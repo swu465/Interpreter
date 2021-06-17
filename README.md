@@ -1,7 +1,7 @@
 # CSC 413 - Project Two - The Interpreter
 
-## Student Name  : Name here
+## Student Name  : Simon Wu
 
-## Student ID    : ID here
+## Student ID    : 920698802
 
-## Student Email : Email here
+## Student Email : swu21@mail.sfsu.edu
