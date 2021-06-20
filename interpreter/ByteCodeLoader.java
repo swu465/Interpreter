@@ -1,11 +1,15 @@
 
 package interpreter;
 
+import interpreter.bytecode.ByteCode;
 import interpreter.virtualmachine.Program;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 
 
 public class ByteCodeLoader extends Object {
@@ -30,6 +34,41 @@ public class ByteCodeLoader extends Object {
      *      the newly created ByteCode instance via the init function.
      */
     public Program loadCodes() {
-       return null;
+        Program loadedByteCodes = new Program();
+        ArrayList<String> sourceLines = new ArrayList<>();
+        ArrayList<String> args = new ArrayList<>();
+        ByteCode randomByte;
+        String codeLine,codeClass,byteCodeName;
+        String []data;
+        //Class classBlueprint;
+        //while((codeLine = byteSource.readLine()) != null){
+        try{
+            while(this.byteSource.ready()){
+                codeLine = this.byteSource.readLine();
+                sourceLines.add(codeLine);
+                data = codeLine.split("\\s+");
+                codeClass = CodeTable.getClassName(data[0]);
+                randomByte = (ByteCode)(Class.forName("interpreter.bytecode"+codeClass).getDeclaredConstructor().newInstance());
+                //classBlueprint = Class.forName("interpreter.bytecode."+codeClass);
+                //randomByte = classBlueprint.getDeclaredConstructor().newInstance();
+                for( int x = 1; x < data.length; x++){
+                    args.add(data[x]);
+                }
+                randomByte.init(args);
+                loadedByteCodes.addCode(randomByte);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(255);
+        } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+
+        //loadedByteCodes.resolveAddress(sourceLines);
+        loadedByteCodes.resolveAddress();
+       return loadedByteCodes;
     }
 }

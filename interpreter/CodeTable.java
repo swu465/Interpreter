@@ -15,7 +15,7 @@ public class CodeTable {
     private CodeTable(){}
     
     public static void init(){
-        codeTable =  new HashMap<>();
+        codeTable = new HashMap<>();
         codeTable.put("HALT",        "HaltCode");
         codeTable.put("POP",         "PopCode");
         codeTable.put("FALSEBRANCH", "FalseBranchCode");
