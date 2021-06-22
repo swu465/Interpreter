@@ -5,7 +5,7 @@ import interpreter.virtualmachine.VirtualMachine;
 import java.util.ArrayList;
 
 public class LabelCode extends ByteCode{
-
+    int location;
     @Override
     public void execute(VirtualMachine vm) {
 
@@ -13,7 +13,7 @@ public class LabelCode extends ByteCode{
 
     @Override
     public void init(ArrayList<String> args) {
-
+        location = Integer.parseInt(args.get(0));
     }
 
     @Override

@@ -8,7 +8,7 @@ public class HaltCode extends ByteCode{
 
     @Override
     public void execute(VirtualMachine vm) {
-
+        vm.haltCall();
     }
 
     @Override

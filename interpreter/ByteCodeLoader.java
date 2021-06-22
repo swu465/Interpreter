@@ -35,27 +35,27 @@ public class ByteCodeLoader extends Object {
      */
     public Program loadCodes() {
         Program loadedByteCodes = new Program();
-        ArrayList<String> sourceLines = new ArrayList<>();
-        ArrayList<String> args = new ArrayList<>();
         ByteCode randomByte;
         String codeLine,codeClass,byteCodeName;
         String []data;
+        ArrayList<String> byteArgs;
         //Class classBlueprint;
         //while((codeLine = byteSource.readLine()) != null){
         try{
             while(this.byteSource.ready()){
+                byteArgs = new ArrayList<>();
                 codeLine = this.byteSource.readLine();
-                sourceLines.add(codeLine);
+                //loadedByteCodes.addCodeLine(codeLine);
                 data = codeLine.split("\\s+");
                 codeClass = CodeTable.getClassName(data[0]);
                 randomByte = (ByteCode)(Class.forName("interpreter.bytecode"+codeClass).getDeclaredConstructor().newInstance());
                 //classBlueprint = Class.forName("interpreter.bytecode."+codeClass);
                 //randomByte = classBlueprint.getDeclaredConstructor().newInstance();
                 for( int x = 1; x < data.length; x++){
-                    args.add(data[x]);
+                    byteArgs.add(data[x]);
                 }
-                randomByte.init(args);
-                loadedByteCodes.addCode(randomByte);
+                randomByte.init(byteArgs);
+                loadedByteCodes.addByte(randomByte);
             }
         } catch (IOException e) {
             e.printStackTrace();

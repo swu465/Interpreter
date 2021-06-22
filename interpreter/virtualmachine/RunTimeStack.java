@@ -58,4 +58,8 @@ class RunTimeStack {
         */
         framePointer.pop();
     }
+
+    public int peekFramePointer() {
+        return framePointer.peek();
+    }
 }

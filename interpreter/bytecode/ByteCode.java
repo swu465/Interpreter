@@ -8,4 +8,6 @@ public abstract class ByteCode {
     public abstract void execute(VirtualMachine vm);
     public abstract void init(ArrayList<String> args);
     public abstract String toString();
+    public abstract String getLabel();
+    public abstract void setAddress(int value);
 }
