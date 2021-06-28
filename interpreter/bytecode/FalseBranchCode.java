@@ -9,9 +9,10 @@ public class FalseBranchCode extends ByteCode{
     String label;
     @Override
     public void execute(VirtualMachine vm) {
+        System.out.println("FalseBranchCode");
        int runTimePop = vm.popCall();
        if(runTimePop == 0){
-            vm.gotoCall(resolvedAddress);
+            vm.setPC(resolvedAddress);
        }
     }
 
@@ -23,7 +24,7 @@ public class FalseBranchCode extends ByteCode{
 
     @Override
     public String toString() {
-        return null;
+        return "FALSEBRANCH "+resolvedAddress;
     }
 
     public String getLabel() {

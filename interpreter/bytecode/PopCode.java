@@ -8,6 +8,7 @@ public class PopCode extends ByteCode{
     int numberOfPops;
     @Override
     public void execute(VirtualMachine vm) {
+        System.out.println("PopCode");
         int frameIndex = vm.peekFrame();
         if(numberOfPops<=frameIndex){
             for(int x = 0 ; x < numberOfPops; x++){

@@ -7,10 +7,15 @@ import java.util.ArrayList;
 public class CallCode extends ByteCode{
     int resolvedAddress;
     String label;
+    String printCurrentFrame;
     @Override
     public void execute(VirtualMachine vm) {
-        vm.gotoCall(resolvedAddress);
+        System.out.println("CallCode");
+
         vm.pushReturnAddress();
+        printCurrentFrame = vm.getCurrentFrame();
+        vm.setPC(resolvedAddress);
+
     }
 
     @Override
@@ -20,12 +25,12 @@ public class CallCode extends ByteCode{
 
     @Override
     public String toString() {
-        return null;
+        return "CALL "+label+"  "+label.substring(0,0)+"("+printCurrentFrame+")";
     }
 
     @Override
     public String getLabel() {
-        return null;
+        return label;
     }
 
     @Override

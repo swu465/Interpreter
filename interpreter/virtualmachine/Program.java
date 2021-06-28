@@ -13,7 +13,7 @@ public class Program {
 
     public Program() {
         program = new ArrayList<ByteCode>();
-        codeLines = new ArrayList<String>();
+        //codeLines = new ArrayList<String>();
     }
 
     protected ByteCode getCode(int programCounter) {
@@ -21,7 +21,7 @@ public class Program {
     }
     //might not be necessary. add the codes in the resolveaddress maybe
     protected void addCodeLine(String input){
-        codeLines.add(input);
+        //codeLines.add(input);
     }
     public void addByte(ByteCode input){
         program.add(input);
@@ -46,7 +46,7 @@ public class Program {
                 //data = codeLines.get(x).split("\\s+");
                 addresses.put(program.get(x).getLabel(), location);
             }
-            for (int y = 0; y < this.program.size(); y++) {
+            for(int y = 0; y < this.program.size(); y++) {
                 //arguments = new ArrayList<>();
                 //data = codeLines.get(y).split("\\s+");
                 if (this.program.get(y) instanceof GotoCode || this.program.get(y) instanceof FalseBranchCode

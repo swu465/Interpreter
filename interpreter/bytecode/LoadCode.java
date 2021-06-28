@@ -5,23 +5,28 @@ import interpreter.virtualmachine.VirtualMachine;
 import java.util.ArrayList;
 
 public class LoadCode extends ByteCode{
-    int offset;
+    int offset,pushedValue;
     String variable;
     @Override
     public void execute(VirtualMachine vm) {
         //takes value at the offset from the frame pointer and pushes it to top
-        vm.loadCall(offset);
+        System.out.println("LoadCode");
+        pushedValue = vm.loadCall(offset);
     }
 
     @Override
     public void init(ArrayList<String> args) {
-        offset = Integer.parseInt(args.get(0));
-        variable = (args.get(1));
+        if(args.size() == 1){
+            offset = Integer.parseInt(args.get(0));
+        }else if(args.size() == 2){
+            offset = Integer.parseInt(args.get(0));
+            variable = (args.get(1));
+        }
     }
 
     @Override
     public String toString() {
-        return null;
+        return "LOAD "+offset+" "+variable+"<load "+variable+">";
     }
 
     @Override

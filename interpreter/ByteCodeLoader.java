@@ -39,7 +39,7 @@ public class ByteCodeLoader extends Object {
         String codeLine,codeClass,byteCodeName;
         String []data;
         ArrayList<String> byteArgs;
-        //Class classBlueprint;
+
         //while((codeLine = byteSource.readLine()) != null){
         try{
             while(this.byteSource.ready()){
@@ -48,9 +48,9 @@ public class ByteCodeLoader extends Object {
                 //loadedByteCodes.addCodeLine(codeLine);
                 data = codeLine.split("\\s+");
                 codeClass = CodeTable.getClassName(data[0]);
-                randomByte = (ByteCode)(Class.forName("interpreter.bytecode"+codeClass).getDeclaredConstructor().newInstance());
-                //classBlueprint = Class.forName("interpreter.bytecode."+codeClass);
-                //randomByte = classBlueprint.getDeclaredConstructor().newInstance();
+                //randomByte = (ByteCode)((Class.forName("interpreter.bytecode"+codeClass)).getDeclaredConstructor().newInstance());
+                Class classBlueprint = Class.forName("interpreter.bytecode."+codeClass);
+                randomByte = (ByteCode) classBlueprint.getDeclaredConstructor().newInstance();
                 for( int x = 1; x < data.length; x++){
                     byteArgs.add(data[x]);
                 }
@@ -69,6 +69,7 @@ public class ByteCodeLoader extends Object {
 
         //loadedByteCodes.resolveAddress(sourceLines);
         loadedByteCodes.resolveAddress();
+        //System.out.println("resolved addresses");
        return loadedByteCodes;
     }
 }

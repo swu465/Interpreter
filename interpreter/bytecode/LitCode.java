@@ -9,23 +9,34 @@ public class LitCode extends ByteCode{
     String variable;
     @Override
     public void execute(VirtualMachine vm) {
+        System.out.println("LitCode");
         vm.pushCall(value);
     }
 
     @Override
     public void init(ArrayList<String> args) {
-        value = Integer.parseInt(args.get(0));
-        variable = args.get(1);
+        if(args.size() == 1){
+            value = Integer.parseInt(args.get(0));
+        }else if(args.size() == 2){
+            value = Integer.parseInt(args.get(0));
+            variable = args.get(1);
+        }
     }
 
     @Override
     public String toString() {
-        return null;
+        String returnString;
+        if(variable != null){
+            returnString = "LIT "+value+"  int "+variable;
+        }else{
+            returnString = "LIT "+value;
+        }
+        return returnString;
     }
 
     @Override
     public String getLabel() {
-        return null;
+        return variable;
     }
 
     @Override
