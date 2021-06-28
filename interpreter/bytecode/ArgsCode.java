@@ -9,6 +9,7 @@ public class ArgsCode extends ByteCode{
     @Override
     public void execute(VirtualMachine vm) {
         //double check
+        System.out.println("ArgsCode");
         vm.pushFramePointer(numberOfValues);
     }
 

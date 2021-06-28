@@ -68,13 +68,13 @@ class RunTimeStack {
     }
     public int load(int offset){
         int value;
-        if(framePointer.peek()+offset > runTimeStack.size()-1){
+        if(runTimeStack.size() > 0 && framePointer.peek()+offset > runTimeStack.size()-1){
             value = runTimeStack.get(runTimeStack.size()-1);
         }else{
             value = runTimeStack.get(framePointer.peek()+offset);
         }
         runTimeStack.add(value);
-        return runTimeStack.size()-1;
+        return value;
     }
     public void newFrameAt(int offset){
         //????
@@ -96,7 +96,7 @@ class RunTimeStack {
     }
     public String printFrame(){
         StringBuilder frame = new StringBuilder();
-        System.out.println(framePointer.peek());
+        System.out.println("PrintFrame peek: "+framePointer.peek()+" RunTime Size: "+runTimeStack.size());
         System.out.println(printFrameStack());
         for(int x = framePointer.peek(); x < runTimeStack.size(); x++){
             frame.append(runTimeStack.get(x));
