@@ -13,9 +13,9 @@ public class CallCode extends ByteCode{
         System.out.println("CallCode");
 
         vm.pushReturnAddress();
-        printCurrentFrame = vm.getCurrentFrame();
+        //printCurrentFrame = vm.getCurrentFrame();
+        //System.out.println("stack "+printCurrentFrame);
         vm.setPC(resolvedAddress);
-
     }
 
     @Override
@@ -25,7 +25,8 @@ public class CallCode extends ByteCode{
 
     @Override
     public String toString() {
-        return "CALL "+label+"  "+label.substring(0,0)+"("+printCurrentFrame+")";
+        String[] splitLabel = label.split("<<");
+        return "CALL "+label+"  "+splitLabel[0]+"["+printCurrentFrame+"]";
     }
 
     @Override

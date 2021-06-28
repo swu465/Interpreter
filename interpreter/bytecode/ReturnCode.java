@@ -14,10 +14,13 @@ public class ReturnCode extends ByteCode{
         System.out.println("ReturnCode");
         //store top of runtime stack
         runTimeTop = vm.peekRunTime();
-        vm.popFrameCall();
+        vm.popFrameCall(); //??
         //pop the current frame then pop the top of the framePointer stack
         poppedValue = vm.popReturnAddress();
         vm.setPC(poppedValue);
+        vm.pushCall(runTimeTop);
+        //now its inf looping. find out why. yay.
+        System.out.println("Going back to "+poppedValue);
     }
 
     @Override

@@ -46,44 +46,65 @@ class RunTimeStack {
         System.out.println(dumping);
     }
     public int peek(){
-        int x = runTimeStack.size()-1;
+        System.out.println("Peek: "+runTimeStack.size());
+        int x = 0;
+        if(runTimeStack.size() > 0) {
+           x = runTimeStack.size() - 1;
+        }
         return runTimeStack.get(x);
     }
     public int push(int value){
-        this.runTimeStack.add(value);
+        runTimeStack.add(value);
+        System.out.println("You entered "+this.peek()+" in RunTimeStack push");
+        System.out.println("Push: "+runTimeStack.size());
         return this.peek();
     }
     public int pop(){
-        int x = runTimeStack.size();
-        System.out.println("Pop: "+runTimeStack.size());
+        int x = runTimeStack.size()-1;
+        System.out.println("Pop before: "+runTimeStack.size());
         int y = runTimeStack.get(x);
         runTimeStack.remove(x);
+        System.out.println("Pop after: "+runTimeStack.size());
         return y;
     }
     public int store(int offset){
+        System.out.println("Store runtime size: "+runTimeStack.size()+" Offset: "+offset);
+        System.out.println("Framepointer peek "+framePointer.peek());
         int x = framePointer.peek()+offset;
         int value = this.pop();
         runTimeStack.set(x,value);
         return value;
     }
     public int load(int offset){
-        int value;
-        if(runTimeStack.size() > 0 && framePointer.peek()+offset > runTimeStack.size()-1){
-            value = runTimeStack.get(runTimeStack.size()-1);
-        }else{
-            value = runTimeStack.get(framePointer.peek()+offset);
+        int value = 0;
+        int newOffset = framePointer.peek()+offset;
+        if(newOffset > runTimeStack.size()-1){
+            value = this.peek();
+        }else if(newOffset< runTimeStack.size()-1){
+            value = runTimeStack.get(newOffset);
         }
         runTimeStack.add(value);
         return value;
     }
+    /**
+      * create a new frame pointer at the index offset slots down
+      * from the top of the runtime stack .
+      * @param offset slots down from the top of the runtime stack
+      */
     public void newFrameAt(int offset){
         //????
-        int newFrame = runTimeStack.size()+offset;
+        int newFrame = 0;
+        if(runTimeStack.size() > 0 && runTimeStack.size() > offset){
+            newFrame= runTimeStack.size()-offset-1;
+        }else if(runTimeStack.size() < offset){
+            newFrame = runTimeStack.size();
+        }
         System.out.println("newFrameAt: "+newFrame+" Offset: "+offset);
         framePointer.add(newFrame);
     }
     public void popFrame(){
         int peekFrame = framePointer.peek();
+        System.out.println("PopFrame");
         //runTimeStack.removeRange(peekFrame,runTimeStack.size()-1);
         for(int x = peekFrame; x<runTimeStack.size();x++){
             runTimeStack.remove(x);
@@ -105,5 +126,14 @@ class RunTimeStack {
             }
         }
         return frame.toString();
+    }
+
+    public void printRunTime() {
+        String runTime="[";
+        for(int x = 0; x < runTimeStack.size();x++){
+            runTime+=runTimeStack.get(x)+" ";
+        }
+        runTime+="]";
+        System.out.println(runTime);
     }
 }

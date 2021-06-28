@@ -30,6 +30,8 @@ public class VirtualMachine {
         while(isRunning){
             ByteCode code = program.getCode(programCounter);
             code.execute(this);
+            runTimeStack.printFrame();
+            runTimeStack.printRunTime();
             programCounter++;
             if(isDumping){
                 if(code instanceof CallCode || code instanceof GotoCode || code instanceof FalseBranchCode){
@@ -70,6 +72,7 @@ public class VirtualMachine {
     }
 
     public void pushReturnAddress() {
+        System.out.println(programCounter+" pushed onto return address stack");
         returnAddress.push(programCounter);
     }
 

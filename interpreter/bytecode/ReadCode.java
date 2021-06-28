@@ -17,6 +17,7 @@ public class ReadCode extends ByteCode{
             try{
                 number = Integer.parseInt(userInput);
                 vm.pushCall(number);
+                System.out.println("You entered "+number+" in ReadCode");
                 numberFound = true;
             }catch(Exception e){
                 input.next();
