@@ -24,7 +24,7 @@ class RunTimeStack {
         return frame;
     }
     public void dump(){
-        String dumping="[";
+        String dumping="[] [";
         boolean notEven = false;
         if(framePointer.size() % 2 != 0){
             framePointer.add(runTimeStack.size());
@@ -95,9 +95,9 @@ class RunTimeStack {
         //????
         int newFrame = 0;
         if(runTimeStack.size() > 0 && runTimeStack.size() > offset){
-            newFrame= runTimeStack.size()-offset-1;
+            newFrame= runTimeStack.size()-offset;
         }else if(runTimeStack.size() < offset){
-            newFrame = runTimeStack.size();
+            newFrame = runTimeStack.size()-1;
         }
         System.out.println("newFrameAt: "+newFrame+" Offset: "+offset);
         framePointer.add(newFrame);
@@ -106,10 +106,14 @@ class RunTimeStack {
         int peekFrame = framePointer.peek();
         System.out.println("PopFrame");
         //runTimeStack.removeRange(peekFrame,runTimeStack.size()-1);
-        for(int x = peekFrame; x<runTimeStack.size();x++){
-            runTimeStack.remove(x);
+        if(peekFrame < 1){
+            for(int x = peekFrame; x<runTimeStack.size();x++){
+                runTimeStack.remove(x);
+            }
+            framePointer.pop();
+        }else if(peekFrame == 0){
+            framePointer.peek();
         }
-        framePointer.pop();
     }
 
     public int peekFramePointer() {

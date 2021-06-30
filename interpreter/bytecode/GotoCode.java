@@ -9,7 +9,7 @@ public class GotoCode extends ByteCode{
     String label;
     @Override
     public void execute(VirtualMachine vm) {
-        System.out.println("GoToCode");
+        System.out.println("GoToCode "+label+" "+resolvedAddress);
         vm.setPC(resolvedAddress);
     }
 

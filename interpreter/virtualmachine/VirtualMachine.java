@@ -30,8 +30,8 @@ public class VirtualMachine {
         while(isRunning){
             ByteCode code = program.getCode(programCounter);
             code.execute(this);
-            runTimeStack.printFrame();
-            runTimeStack.printRunTime();
+            //runTimeStack.printFrame();
+            //runTimeStack.printRunTime();
             programCounter++;
             if(isDumping){
                 if(code instanceof CallCode || code instanceof GotoCode || code instanceof FalseBranchCode){

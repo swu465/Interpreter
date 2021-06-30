@@ -11,7 +11,8 @@ public class StoreCode extends ByteCode{
     @Override
     public void execute(VirtualMachine vm) {
         System.out.println("StoreCode");
-        runTimeTop = vm.storeCall(offset);
+        runTimeTop = vm.popCall();
+        runTimeTop = vm.storeCall(runTimeTop);
     }
 
     @Override

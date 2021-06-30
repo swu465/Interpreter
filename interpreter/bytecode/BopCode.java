@@ -7,73 +7,92 @@ import java.util.HashMap;
 
 public class BopCode extends ByteCode{
     String operator;
-    private static int result;
+    int result;
     boolean stuff;
     @Override
     public void execute(VirtualMachine vm) {
-        System.out.println("BopCode");
+        System.out.println("BopCode "+operator);
         int operandTwo = vm.popCall();
         int operandOne = vm.popCall();
+        System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
         switch(operator){
             case "+":
                 result = vm.pushCall(operandOne + operandTwo);
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "-":
                 result = vm.pushCall(operandOne - operandTwo);
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "/":
                 result = vm.pushCall(operandOne / operandTwo);
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "*":
                 result = vm.pushCall(operandOne * operandTwo);
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "==":
                 if(operandOne == operandTwo){
                     result = vm.pushCall(0);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
                 break;
             case "!=":
                 if(operandOne != operandTwo){
                     result = vm.pushCall(0);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
                 break;
             case "<=":
                 if(operandOne <= operandTwo){
                     result = vm.pushCall(0);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
                 break;
             case ">=":
                 if(operandOne >= operandTwo){
                     result = vm.pushCall(0);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
                 break;
             case "<":
                 if(operandOne < operandTwo){
                     result = vm.pushCall(0);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
                 break;
             case ">":
                 if(operandOne > operandTwo){
                     result = vm.pushCall(0);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
+                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
                 break;
             case "|":
-                result = vm.pushCall(operandOne | operandTwo);
+                result = vm.pushCall((operandOne | operandTwo));
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "&":
-                result = vm.pushCall(operandOne & operandTwo);
+                result = vm.pushCall((operandOne & operandTwo));
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
         }
         //vm.pushCall(result);
