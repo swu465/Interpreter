@@ -92,12 +92,13 @@ class RunTimeStack {
       * @param offset slots down from the top of the runtime stack
       */
     public void newFrameAt(int offset){
-        //????
-        int newFrame = 0;
+        //iif the offset is 0, return the number of elements?
+        int newFrame = runTimeStack.size()-1;
         if(runTimeStack.size() > 0 && runTimeStack.size() > offset){
-            newFrame= runTimeStack.size()-offset;
-        }else if(runTimeStack.size() < offset){
-            newFrame = runTimeStack.size()-1;
+            newFrame= runTimeStack.size()-offset-1;//-1?
+        }else if(runTimeStack.size() < offset || offset == 0){
+        //if the offset is bigger than the runtimestack, assume its everything in the stack
+            newFrame = 0;
         }
         System.out.println("newFrameAt: "+newFrame+" Offset: "+offset);
         framePointer.add(newFrame);
@@ -106,13 +107,13 @@ class RunTimeStack {
         int peekFrame = framePointer.peek();
         System.out.println("PopFrame");
         //runTimeStack.removeRange(peekFrame,runTimeStack.size()-1);
-        if(peekFrame < 1){
-            for(int x = peekFrame; x<runTimeStack.size();x++){
+        if(peekFrame > 1){
+            for(int x = peekFrame; x < runTimeStack.size();x++){
                 runTimeStack.remove(x);
             }
             framePointer.pop();
-        }else if(peekFrame == 0){
-            framePointer.peek();
+        }else if(peekFrame == 0 && framePointer.size() > 1){
+            framePointer.pop();
         }
     }
 

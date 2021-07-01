@@ -17,6 +17,8 @@ public class PopCode extends ByteCode{
         }else {
             for(int y = 0; y < frameIndex; y++){
                 vm.popCall();
+                //maybe popframe()?
+                //vm.popFrameCall();
             }
         }
     }

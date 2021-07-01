@@ -14,13 +14,14 @@ public class ReadCode extends ByteCode{
         System.out.print("Please enter an Integer: ");
         do {
             String userInput = input.nextLine();
+            //maybe redo this part
             try{
                 number = Integer.parseInt(userInput);
                 vm.pushCall(number);
                 System.out.println("You entered "+number+" in ReadCode");
                 numberFound = true;
             }catch(Exception e){
-                input.next();
+                input.nextLine();
                 System.out.println("You did not enter a valid integer. Please try again.");
             }
 
