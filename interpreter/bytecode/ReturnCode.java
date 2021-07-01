@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ReturnCode extends ByteCode{
     int runTimeTop;
-    String variable;
+    String label;
     int poppedValue;
 
     @Override
@@ -26,27 +26,27 @@ public class ReturnCode extends ByteCode{
     @Override
     public void init(ArrayList<String> args) {
         if(args.size() == 1){
-            variable = args.get(0);
+            label = args.get(0);
         }
-        //id = args.get(2);
-        //value = Integer.parseInt(args.get(3));
     }
 
     @Override
     public String toString() {
         String returnString;
         //not sure if top of frame pointer or the top of runtimestack
-        if(variable.contains(">>") && variable.contains("<<")){
-            returnString = "RETURN "+variable+"  EXIT "+variable.substring(0,0)+" : "+runTimeTop;
+        String[] data;
+        if(label.contains(">>") && label.contains("<<")){
+            data = label.split("<<");
+            returnString = "RETURN "+label+"  EXIT "+data[0]+" : "+runTimeTop;
         }else{
-            returnString = "RETURN "+variable+"  EXIT "+variable+" : "+runTimeTop;
+            returnString = "RETURN "+label+"  EXIT "+label+" : "+runTimeTop;
         }
         return returnString;
     }
 
     @Override
     public String getLabel() {
-        return variable;
+        return label;
     }
 
     @Override

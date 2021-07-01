@@ -35,56 +35,50 @@ public class BopCode extends ByteCode{
             case "==":
                 if(operandOne == operandTwo){
                     result = vm.pushCall(0);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "!=":
                 if(operandOne != operandTwo){
                     result = vm.pushCall(0);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "<=":
                 if(operandOne <= operandTwo){
                     result = vm.pushCall(0);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case ">=":
                 if(operandOne >= operandTwo){
                     result = vm.pushCall(0);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "<":
                 if(operandOne < operandTwo){
                     result = vm.pushCall(0);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case ">":
                 if(operandOne > operandTwo){
                     result = vm.pushCall(0);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }else{
                     result = vm.pushCall(1);
-                    System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 }
+                System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "|":
                 result = vm.pushCall((operandOne | operandTwo));
