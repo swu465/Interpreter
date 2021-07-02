@@ -46,7 +46,7 @@ class RunTimeStack {
         System.out.println(dumping);
     }
     public int peek(){
-        System.out.println("Peek: "+runTimeStack.size());
+        //System.out.println("Peek: "+runTimeStack.size());
         int x = 0;
         if(runTimeStack.size() > 0) {
            x = runTimeStack.size() - 1;
@@ -55,21 +55,21 @@ class RunTimeStack {
     }
     public int push(int value){
         runTimeStack.add(value);
-        System.out.println("You entered "+this.peek()+" in RunTimeStack push");
-        System.out.println("Push: "+runTimeStack.size());
+        //System.out.println("You entered "+this.peek()+" in RunTimeStack push");
+        //System.out.println("Push: "+runTimeStack.size());
         return this.peek();
     }
     public int pop(){
         int x = runTimeStack.size()-1;
-        System.out.println("Pop before: "+runTimeStack.size());
+        //System.out.println("Pop before: "+runTimeStack.size());
         int y = runTimeStack.get(x);
         runTimeStack.remove(x);
-        System.out.println("Pop after: "+runTimeStack.size());
+        //System.out.println("Pop after: "+runTimeStack.size());
         return y;
     }
     public int store(int offset){
-        System.out.println("Store runtime size: "+runTimeStack.size()+" Offset: "+offset);
-        System.out.println("Framepointer peek "+framePointer.peek());
+        //System.out.println("Store runtime size: "+runTimeStack.size()+" Offset: "+offset);
+        //System.out.println("Framepointer peek "+framePointer.peek());
         int x = framePointer.peek()+offset;
         int value = this.pop();
         runTimeStack.set(x,value);
@@ -105,15 +105,18 @@ class RunTimeStack {
     }
     public void popFrame(){
         int peekFrame = framePointer.peek();
-        System.out.println("PopFrame");
+        System.out.println("PopFrame "+runTimeStack.size()+" frame peek: "+peekFrame);
         //runTimeStack.removeRange(peekFrame,runTimeStack.size()-1);
         if(peekFrame > 1){
+            System.out.println("AAAAA");
             for(int x = peekFrame; x < runTimeStack.size();x++){
                 runTimeStack.remove(x);
             }
             framePointer.pop();
-        }else if(peekFrame == 0 && framePointer.size() > 1){
+        }else if(peekFrame == 0 && runTimeStack.size() >= 1){
+            System.out.println("EEEEE");
             framePointer.pop();
+            this.pop();
         }
     }
 
@@ -122,8 +125,8 @@ class RunTimeStack {
     }
     public String printFrame(){
         StringBuilder frame = new StringBuilder();
-        System.out.println("PrintFrame peek: "+framePointer.peek()+" RunTime Size: "+runTimeStack.size());
-        System.out.println(printFrameStack());
+        //System.out.println("PrintFrame peek: "+framePointer.peek()+" RunTime Size: "+runTimeStack.size());
+        //System.out.println(printFrameStack());
         for(int x = framePointer.peek(); x < runTimeStack.size(); x++){
             frame.append(runTimeStack.get(x));
             if(x+1 < runTimeStack.size()){
@@ -133,12 +136,12 @@ class RunTimeStack {
         return frame.toString();
     }
 
-    public void printRunTime() {
+    public String printRunTime() {
         String runTime="[";
         for(int x = 0; x < runTimeStack.size();x++){
             runTime+=runTimeStack.get(x)+" ";
         }
         runTime+="]";
-        System.out.println(runTime);
+        return runTime;
     }
 }

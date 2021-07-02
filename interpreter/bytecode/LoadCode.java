@@ -10,7 +10,8 @@ public class LoadCode extends ByteCode{
     @Override
     public void execute(VirtualMachine vm) {
         //takes value at the offset from the frame pointer and pushes it to top
-        System.out.println("LoadCode");
+        //System.out.println("LoadCode");
+        System.out.println(this.toString());
         pushedValue = vm.loadCall(offset);
     }
 
@@ -26,7 +27,13 @@ public class LoadCode extends ByteCode{
 
     @Override
     public String toString() {
-        return "LOAD "+offset+" "+variable+"<load "+variable+">";
+        String returnString;
+        if(variable!=null){
+            returnString = "LOAD "+offset+" "+variable+"<load "+variable+">";
+        }else{
+            returnString = "LOAD "+offset;
+        }
+        return returnString;
     }
 
     @Override

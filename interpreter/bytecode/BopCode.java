@@ -14,7 +14,7 @@ public class BopCode extends ByteCode{
         System.out.println("BopCode "+operator);
         int operandTwo = vm.popCall();
         int operandOne = vm.popCall();
-        System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
+        System.out.println(operandOne +" "+ operator+" "+operandTwo+" = "+result);
         switch(operator){
             case "+":
                 result = vm.pushCall(operandOne + operandTwo);

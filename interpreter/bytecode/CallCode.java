@@ -12,8 +12,8 @@ public class CallCode extends ByteCode{
     public void execute(VirtualMachine vm) {
         System.out.println("CallCode "+label+" "+resolvedAddress);
         vm.pushReturnAddress();
-        //printCurrentFrame = vm.getCurrentFrame();
-        //System.out.println("stack "+printCurrentFrame);
+        printCurrentFrame = vm.getCurrentFrame();
+        System.out.println("stack "+printCurrentFrame);
         vm.setPC(resolvedAddress);
     }
 
