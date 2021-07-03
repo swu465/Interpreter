@@ -20,9 +20,6 @@ public class Program {
         return this.program.get(programCounter);
     }
     //might not be necessary. add the codes in the resolveaddress maybe
-    protected void addCodeLine(String input){
-        //codeLines.add(input);
-    }
     public void addByte(ByteCode input){
         program.add(input);
     }

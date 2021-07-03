@@ -34,6 +34,7 @@ public class VirtualMachine {
             System.out.println("runtime: "+runTimeStack.printRunTime());
 
             programCounter++;
+            //?????
             if(isDumping){
                 if(code instanceof CallCode || code instanceof GotoCode || code instanceof FalseBranchCode){
                     System.out.println(code);
