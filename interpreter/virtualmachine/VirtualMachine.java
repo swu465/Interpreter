@@ -30,16 +30,16 @@ public class VirtualMachine {
         while(isRunning){
             ByteCode code = program.getCode(programCounter);
             code.execute(this);
-            System.out.println("frame: "+runTimeStack.printFrameStack());
-            System.out.println("runtime: "+runTimeStack.printRunTime());
+            //System.out.println("frame: "+runTimeStack.printFrameStack());
+            //System.out.println("runtime: "+runTimeStack.printRunTime());
 
             programCounter++;
             //?????
             if(isDumping){
-                if(code instanceof CallCode || code instanceof GotoCode || code instanceof FalseBranchCode){
+                //if(code instanceof CallCode || code instanceof GotoCode || code instanceof FalseBranchCode){
                     System.out.println(code);
                     runTimeStack.dump();
-                }
+                //}
             }
         }
     }
@@ -94,7 +94,7 @@ public class VirtualMachine {
     }
 
     public String getCurrentFrame() {
-        return runTimeStack.printFrame();
+        return runTimeStack.currentFrame();
     }
 
     public int popReturnAddress() {

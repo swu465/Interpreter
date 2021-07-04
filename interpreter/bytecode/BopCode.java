@@ -14,7 +14,7 @@ public class BopCode extends ByteCode{
         System.out.println("BopCode "+operator);
         int operandTwo = vm.popCall();
         int operandOne = vm.popCall();
-        System.out.println(operandOne +" "+ operator+" "+operandTwo+" = "+result);
+        //System.out.println(operandOne +" "+ operator+" "+operandTwo+" = "+result);
         switch(operator){
             case "+":
                 result = vm.pushCall(operandOne + operandTwo);
@@ -34,49 +34,49 @@ public class BopCode extends ByteCode{
                 break;
             case "==":
                 if(operandOne == operandTwo){
-                    result = vm.pushCall(0);
-                }else{
                     result = vm.pushCall(1);
+                }else{
+                    result = vm.pushCall(0);
                 }
                 System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "!=":
                 if(operandOne != operandTwo){
-                    result = vm.pushCall(0);
-                }else{
                     result = vm.pushCall(1);
+                }else {
+                    result = vm.pushCall(0);
                 }
                 System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "<=":
                 if(operandOne <= operandTwo){
-                    result = vm.pushCall(0);
-                }else{
                     result = vm.pushCall(1);
+                }else{
+                    result = vm.pushCall(0);
                 }
                 System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case ">=":
                 if(operandOne >= operandTwo){
-                    result = vm.pushCall(0);
-                }else{
                     result = vm.pushCall(1);
+                }else{
+                    result = vm.pushCall(0);
                 }
                 System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case "<":
                 if(operandOne < operandTwo){
-                    result = vm.pushCall(0);
-                }else{
                     result = vm.pushCall(1);
+                }else{
+                    result = vm.pushCall(0);
                 }
                 System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;
             case ">":
                 if(operandOne > operandTwo){
-                    result = vm.pushCall(0);
-                }else{
                     result = vm.pushCall(1);
+                }else{
+                    result = vm.pushCall(0);
                 }
                 System.out.println(operandTwo +" "+ operator+" "+operandOne+" = "+result);
                 break;

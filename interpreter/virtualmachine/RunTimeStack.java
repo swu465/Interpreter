@@ -24,24 +24,46 @@ class RunTimeStack {
         return frame;
     }
     public void dump(){
-        String dumping="[] [";
+        String dumping="[";
         boolean notEven = false;
-        if(framePointer.size() % 2 != 0){
+        int frame = framePointer.get(0);
+        if(!runTimeStack.isEmpty()){
+            for(int x = 0; x < runTimeStack.size();x++){
+                if(x == frame){
+                    dumping+="] [";
+                    if(framePointer.size()>1 && x < framePointer.size()-1){
+                        frame = framePointer.get(x+1);
+                    }
+                }
+                dumping+=runTimeStack.get(x);
+                if(x+1< runTimeStack.size()){
+                    dumping+=", ";
+                }
+            }
+        }
+
+        /*if(framePointer.size() % 2 != 0){
             framePointer.add(runTimeStack.size());
             notEven = true;
         }
         //x++ or x+2?
         for(int x = 0; x < framePointer.size(); x=x+2){
-            for (int y = framePointer.get(x); y < framePointer.get(x+1); y++){
-                dumping = dumping + runTimeStack.get(y);
-                if(y+1 < framePointer.get(x+1) ){
-                    dumping = dumping + ", ";
-                }
+            if(runTimeStack.size() > 1 && framePointer.get(x+1) == framePointer.get(x)) {
+                System.out.println("Dump if" +runTimeStack.size()+" "+ framePointer.get(x+1)+" vs "+framePointer.get(x));
+                dumping+="] [";
+                continue;
+            }//else{
+                    for (int y = framePointer.get(x); y < framePointer.get(x+1); y++){
+                        dumping = dumping + runTimeStack.get(y);
+                        if(y+1 < framePointer.get(x+1) ){
+                            dumping = dumping + ", ";
+                        }
+                    }
+                //}
             }
-        }
         if(notEven){
             framePointer.pop();
-        }
+        }*/
         dumping = dumping + "]";
         System.out.println(dumping);
     }
@@ -76,11 +98,11 @@ class RunTimeStack {
         return value;
     }
     public int load(int offset){
-        int value = 0;
+        int value;
         int newOffset = framePointer.peek()+offset;
-        if(newOffset > runTimeStack.size()-1){
+        if(newOffset > (runTimeStack.size()-1)){
             value = this.peek();
-        }else if(newOffset< runTimeStack.size()-1){
+        }else{
             value = runTimeStack.get(newOffset);
         }
         runTimeStack.add(value);
@@ -93,13 +115,13 @@ class RunTimeStack {
       */
     public void newFrameAt(int offset){
         //iif the offset is 0, return the number of elements?
-        int newFrame = runTimeStack.size()-1;
-        if(runTimeStack.size() > 0 && runTimeStack.size() > offset){
-            newFrame= runTimeStack.size()-offset-1;//-1?
+        int newFrame=runTimeStack.size()-offset;
+        /*if(runTimeStack.size() > 0 && runTimeStack.size() > offset){
+            newFrame-=offset;
         }else if(runTimeStack.size() < offset || offset == 0){
         //if the offset is bigger than the runtimestack, assume its everything in the stack
             newFrame = 0;
-        }
+        }*/
         System.out.println("newFrameAt: "+newFrame+" Offset: "+offset);
         framePointer.add(newFrame);
     }
@@ -123,19 +145,6 @@ class RunTimeStack {
     public int peekFramePointer() {
         return framePointer.peek();
     }
-    public String printFrame(){
-        StringBuilder frame = new StringBuilder();
-        //System.out.println("PrintFrame peek: "+framePointer.peek()+" RunTime Size: "+runTimeStack.size());
-        //System.out.println(printFrameStack());
-        for(int x = framePointer.peek(); x < runTimeStack.size(); x++){
-            frame.append(runTimeStack.get(x));
-            if(x+1 < runTimeStack.size()){
-                frame.append(",");
-            }
-        }
-        return frame.toString();
-    }
-
     public String printRunTime() {
         String runTime="[";
         for(int x = 0; x < runTimeStack.size();x++){
@@ -143,5 +152,18 @@ class RunTimeStack {
         }
         runTime+="]";
         return runTime;
+    }
+
+    public String currentFrame() {
+        String frame="(";
+        int framePointerNum;
+        for(int x = framePointer.peek() ; x < runTimeStack.size(); x++){
+            frame+=runTimeStack.get(x);
+            if(x+1 < runTimeStack.size()){
+                frame+=", ";
+            }
+        }
+        frame+=")";
+        return frame;
     }
 }

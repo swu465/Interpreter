@@ -8,17 +8,17 @@ public class PopCode extends ByteCode{
     int numberOfPops;
     @Override
     public void execute(VirtualMachine vm) {
-        System.out.println("PopCode");
+        System.out.println("PopCode "+numberOfPops);
         int frameIndex = vm.peekFrame();
-        if(numberOfPops<=frameIndex){
+        if(numberOfPops<frameIndex){
+            System.out.println("number <= frameIndex");
             for(int x = 0 ; x < numberOfPops; x++){
                 vm.popCall();
             }
-        }else {
-            for(int y = 0; y < frameIndex; y++){
+        }else if(numberOfPops>=frameIndex){
+            System.out.println(("number > pops"));
+            for (int x  = 0; x < frameIndex; x++){
                 vm.popCall();
-                //maybe popframe()?
-                //vm.popFrameCall();
             }
         }
     }
@@ -30,7 +30,7 @@ public class PopCode extends ByteCode{
 
     @Override
     public String toString() {
-        return null;
+        return "POP "+numberOfPops;
     }
 
     @Override

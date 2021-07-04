@@ -35,11 +35,11 @@ public class ReturnCode extends ByteCode{
         String returnString;
         //not sure if top of frame pointer or the top of runtimestack
         String[] data;
-        if(label.contains(">>") && label.contains("<<")){
+        if(label != null && label.contains(">>") && label.contains("<<")){
             data = label.split("<<");
             returnString = "RETURN "+label+"  EXIT "+data[0]+" : "+runTimeTop;
         }else{
-            returnString = "RETURN "+label+"  EXIT "+label+" : "+runTimeTop;
+            returnString = "RETURN "+runTimeTop;
         }
         return returnString;
     }

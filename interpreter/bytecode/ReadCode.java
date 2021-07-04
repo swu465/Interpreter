@@ -22,7 +22,7 @@ public class ReadCode extends ByteCode{
                 numberFound = true;
             }catch(Exception e){
                 input.nextLine();
-                System.out.println("You did not enter a valid integer. Please try again.");
+                System.out.println(userInput+" "+"You did not enter a valid integer. Please try again.");
             }
 
         }while(!numberFound);

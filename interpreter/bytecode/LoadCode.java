@@ -11,7 +11,7 @@ public class LoadCode extends ByteCode{
     public void execute(VirtualMachine vm) {
         //takes value at the offset from the frame pointer and pushes it to top
         //System.out.println("LoadCode");
-        System.out.println(this.toString());
+        //System.out.println(this.toString());
         pushedValue = vm.loadCall(offset);
     }
 
