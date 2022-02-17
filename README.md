@@ -1,1 +1,1 @@
-# SFSU CSC 413 - Project Two - The Interpreter
+# SFSU CSC 413 - The Interpreter
