@@ -19,7 +19,6 @@ public class ReturnCode extends ByteCode{
         poppedValue = vm.popReturnAddress();
         vm.setPC(poppedValue);
         vm.pushCall(runTimeTop);
-        //now its inf looping. find out why. yay.
         System.out.println("Going back to "+poppedValue);
     }
 
