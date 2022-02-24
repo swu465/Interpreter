@@ -7,13 +7,13 @@ A program that will imitate a interpreter by executing bytecodes.
 <p allign="center">
     This program is comprised of six classes that manage its exeuction: ByteCodeLoader, CodeTable, Interpreter, Program, RunTimeStack, and VirtualMachine.
   
-    The ByteCodeLoader will read a .x.cod file to look for ByteCodes.
-    The CodeTable stores a HashMap that maps out ByteCodes to their respective Bytecode classes.
+    The ByteCodeLoader class will read a .x.cod file to look for ByteCodes.
+    The CodeTable class stores a HashMap that maps out ByteCodes to their respective Bytecode classes.
     The Program class stores all the ByteCodes that was read from the source file. 
     The RunTimeStack class records and processes the stack of frames.
     The VirtaulMachine class executes the ByteCodes. 
-    The Interpreter class initalizes the CodeTable, creates a Program object that will be given to the VirtalMachine for execution. 
-  </p>
+    The Interpreter class initalizes the CodeTable, creates a Program object that has the loaded ByteCodes that will be given to the VirtalMachine for execution. 
+</p>
  
   
 ```
