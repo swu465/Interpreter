@@ -29,34 +29,27 @@ class RunTimeStack {
         System.out.println("We are now dumping.");
         String dumping="[";
         //boolean notEven = false;
-        System.out.println("framepointer size : "+framePointer.size()+" dump counter: "+dumpFrameCounter);
-        int frame = framePointer.get(0);
-        secondZeroNext = true;
-        Object[] frameArray=framePointer.toArray();
+
+
+        int frameSize = framePointer.size();
+        int runTimeSize = runTimeStack.size();
+        int frameIndex = 0;
+        int frame = framePointer.get(frameIndex);
+        System.out.println("framepointer size : "+frameSize+" runtimeSize: "+runTimeSize);
         if(!runTimeStack.isEmpty()){
             for(int x = 0; x < runTimeStack.size();x++){
-                System.out.println("for loop #"+x+"\ncurrent frame: "+frame);
-                if(x == frame){
+                System.out.println("for loop #"+x+"\ncurrent frame: "+frame+" Frame index: "+frameIndex);
+                if(x == frame && frameSize > 1){
                     System.out.println("x == frame. runstackindex: "+x);
                     dumping+="] [";
-                    if(framePointer.size()>1 && x < framePointer.size()-1){
+                    if(frameIndex < frameSize && frameIndex+1 < frameSize){
                         //dumpFrameCounter++;
-                        if(x+1 < framePointer.size()) {
-                            frame = framePointer.get(x + 1);
-                            System.out.println("framePointer.size()>1 && x < framePointer.size()-1. new frame: "+frame);
-                        }
-
+                        frame = framePointer.get(++frameIndex);
+                        //frameIndex++;
+                        System.out.println("framePointer.size()>1 && x < framePointer.size()-1. new frame: "+frame);
                     }
-                }else if (frame==0){
-                    //should be second 0 here
-                    System.out.println("I am here. framepointer size "+framePointer.size());
-
-                    secondZeroNext = false;
-                    System.out.println(secondZeroNext);
-                    if(x + 1 < framePointer.size()){
-                        frame = framePointer.get(x+1);
-                        System.out.println("new framessss: "+frame);
-                    }
+                }else if(x > 0 && frameSize > 1 && frameIndex+1 < frameSize &&framePointer.get(frameIndex-1) == frame ){
+                    frame = framePointer.get(++frameIndex);
                 }
                 dumping+=runTimeStack.get(x);
                 if(x+1< runTimeStack.size()){
@@ -88,6 +81,11 @@ class RunTimeStack {
             framePointer.pop();
         }*/
         dumping = dumping + "]";
+        if(frameSize>1 && runTimeStack.isEmpty()){
+            for(int y = 1; y < frameSize; y++){
+                dumping+=" []";
+            }
+        }
         System.out.println(dumping);
     }
     public int peek(){
@@ -106,10 +104,10 @@ class RunTimeStack {
     }
     public int pop(){
         int x = runTimeStack.size()-1;
-        System.out.println("Pop before: "+runTimeStack.size());
+        //System.out.println("Pop before: "+runTimeStack.size());
         int y = runTimeStack.get(x);
         runTimeStack.remove(x);
-        System.out.println("Pop after: "+runTimeStack.size());
+        //System.out.println("Pop after: "+runTimeStack.size());
         return y;
     }
     public int store(int offset){
@@ -154,18 +152,21 @@ class RunTimeStack {
     }
     public void popFrame(){
         int peekFrame = framePointer.peek();
+        int runTimeSize = runTimeStack.size();
         System.out.println("PopFrame "+runTimeStack.size()+" frame peek: "+peekFrame);
         //runTimeStack.removeRange(peekFrame,runTimeStack.size()-1);
         if(peekFrame > 1){
             System.out.println("AAAAA");
-            for(int x = peekFrame; x < runTimeStack.size();x++){
-                runTimeStack.remove(x);
+            for(int x = peekFrame; x < runTimeSize;x++){
+                System.out.println("x: "+ x+ " removed: "+ runTimeStack.remove(peekFrame));
             }
             framePointer.pop();
         }else if(peekFrame == 0 && runTimeStack.size() >= 1){
             System.out.println("EEEEE");
             framePointer.pop();
-            this.pop();
+            for(int x = peekFrame; x < runTimeSize;x++){
+                this.pop();
+            }
         }
     }
 
