@@ -12,7 +12,7 @@ public class FalseBranchCode extends ByteCode{
         System.out.println("FalseBranchCode "+label);
        int runTimePop = vm.popCall();
        if(runTimePop == 0){
-           System.out.println("I found a 0");
+           //System.out.println("I found a 0");
             vm.setPC(resolvedAddress);
        }
     }

@@ -11,12 +11,12 @@ public class PopCode extends ByteCode{
         System.out.println("PopCode "+numberOfPops);
         int frameIndex = vm.peekFrame();
         if(numberOfPops<frameIndex){
-            System.out.println("number <= frameIndex");
+            //System.out.println("number <= frameIndex");
             for(int x = 0 ; x < numberOfPops; x++){
                 vm.popCall();
             }
         }else if(numberOfPops>=frameIndex){
-            System.out.println(("number > pops"));
+            //System.out.println(("number > pops"));
             for (int x  = 0; x < frameIndex; x++){
                 vm.popCall();
             }

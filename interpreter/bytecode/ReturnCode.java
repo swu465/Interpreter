@@ -19,7 +19,7 @@ public class ReturnCode extends ByteCode{
         poppedValue = vm.popReturnAddress();
         vm.setPC(poppedValue);
         vm.pushCall(runTimeTop);
-        System.out.println("Going back to "+poppedValue);
+        //System.out.println("Going back to "+poppedValue);
     }
 
     @Override

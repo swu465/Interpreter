@@ -9,7 +9,7 @@ public class WriteCode extends ByteCode{
     public void execute(VirtualMachine vm) {
         System.out.println("WriteCode");
         int value = vm.peekRunTime();
-        System.out.println(value);
+        //System.out.println(value);
     }
 
     @Override
